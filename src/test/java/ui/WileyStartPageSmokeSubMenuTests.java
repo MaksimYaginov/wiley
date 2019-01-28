@@ -10,14 +10,14 @@ import ui.base.BaseUITest;
 
 import static helpers.Helper.generateString;
 
-public class SmokeSubMenuTests extends BaseUITest {
+public class WileyStartPageSmokeSubMenuTests extends BaseUITest {
 
     private WileyStartPage wileyStartPage;
 
     @Feature("Wiley")
     @Story("WileyStartPage")
-    @Test(description = "Smoke sub menu test")
-    public void alertTest() {
+    @Test(description = "Smoke sub menu tests")
+    public void smokeSubMenuTests() {
         wileyStartPage = new WileyStartPage(driver);
 
         Assert.assertTrue(wileyStartPage.getHeaderNavigation().whoWeServeLinkIsDisplayed()
