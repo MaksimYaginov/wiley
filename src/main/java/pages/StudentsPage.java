@@ -27,6 +27,7 @@ public class StudentsPage {
     private WebElement pageContent;
 
     private By learnMoreLink = By.xpath("//span[contains(text(),'Learn More')]/ancestor::a");
+    private By headerSlogan = By.cssSelector("p.sg-title-h1");
 
     public StudentsPage(WebDriver driver) {
         headerNavigation = new HeaderNavigation(driver);
@@ -42,7 +43,7 @@ public class StudentsPage {
             throw new IllegalStateException("Students page is not present");
         }
 
-        if (!headerBanner.isDisplayed()) {
+        if (!headerBanner.isDisplayed() || !headerBanner.findElement(headerSlogan).getText().trim().equals(PropertyManager.getProperty("studentsHeader"))) {
             throw new IllegalStateException("Students page header is not present");
         }
     }

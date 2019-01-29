@@ -6,11 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pages.EducationPage;
 import pages.StudentsPage;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static helpers.Helper.getWebElementsText;
 import static helpers.Helper.moveToElement;
 import static helpers.Waiters.*;
 
@@ -26,6 +28,7 @@ public class HeaderNavigation {
     private By aboutLink = By.xpath("//a[text()='ABOUT']");
     private By whoWeServeSubHeaders = By.xpath("//div[@id='Level1NavNode1']//li/a");
     private By studentsLink = By.xpath("//a[text()='Students']");
+    private By educationLink = By.xpath("//a[text()='Education']");
 
     public HeaderNavigation(WebDriver driver) {
         this.driver = driver;
@@ -55,19 +58,23 @@ public class HeaderNavigation {
         moveToElement(driver, whoWeServe);
     }
 
+    @Step("Move to subject Link")
+    public void moveToSubjectLink() {
+        WebElement subject = mainHeaderNavigation.findElement(subjectLink);
+
+        waitUntilElementClickable(driver, subject);
+        moveToElement(driver, subject);
+    }
+
     @Step("Get Who We Serve sub-headers")
     public List<String> getWhoWeServeSubHeaders() {
-        List<String> subHeaderTitles = new ArrayList<>();
         List<WebElement> subHeaders;
 
         moveToWhoWeServeLink();
         subHeaders = mainHeaderNavigation.findElement(whoWeServeLink).findElements(whoWeServeSubHeaders);
         waitUntilAllElementsVisible(driver, subHeaders);
 
-        for (WebElement subHeader : subHeaders)
-            subHeaderTitles.add(subHeader.getText());
-
-        return subHeaderTitles;
+        return getWebElementsText(driver, subHeaders);
     }
 
     @Step("Go to students page")
@@ -80,5 +87,17 @@ public class HeaderNavigation {
         studentsSubHeader.click();
 
         return new StudentsPage(driver);
+    }
+
+    @Step("Go to education page")
+    public EducationPage goToEducationPage() {
+        WebElement education;
+
+        moveToSubjectLink();
+        education = mainHeaderNavigation.findElement(subjectLink).findElement(educationLink);
+        waitUntilElementClickable(driver, education);
+        education.click();
+
+        return new EducationPage(driver);
     }
 }
