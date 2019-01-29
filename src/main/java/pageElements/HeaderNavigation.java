@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pages.StudentsPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class HeaderNavigation {
     private By subjectLink = By.xpath("//a[text()='SUBJECTS']");
     private By aboutLink = By.xpath("//a[text()='ABOUT']");
     private By whoWeServeSubHeaders = By.xpath("//div[@id='Level1NavNode1']//li/a");
+    private By studentsLink = By.xpath("//a[text()='Students']");
 
     public HeaderNavigation(WebDriver driver) {
         this.driver = driver;
@@ -47,8 +49,10 @@ public class HeaderNavigation {
 
     @Step("Move to Who We Serve Link")
     public void moveToWhoWeServeLink() {
-        waitUntilElementClickable(driver, mainHeaderNavigation.findElement(whoWeServeLink));
-        moveToElement(driver, mainHeaderNavigation.findElement(whoWeServeLink));
+        WebElement whoWeServe = mainHeaderNavigation.findElement(whoWeServeLink);
+
+        waitUntilElementClickable(driver, whoWeServe);
+        moveToElement(driver, whoWeServe);
     }
 
     @Step("Get Who We Serve sub-headers")
@@ -64,5 +68,17 @@ public class HeaderNavigation {
             subHeaderTitles.add(subHeader.getText());
 
         return subHeaderTitles;
+    }
+
+    @Step("Go to students page")
+    public StudentsPage goToStudentsPage() {
+        WebElement studentsSubHeader;
+
+        moveToWhoWeServeLink();
+        studentsSubHeader = mainHeaderNavigation.findElement(whoWeServeLink).findElement(studentsLink);
+        waitUntilElementClickable(driver, studentsSubHeader);
+        studentsSubHeader.click();
+
+        return new StudentsPage(driver);
     }
 }

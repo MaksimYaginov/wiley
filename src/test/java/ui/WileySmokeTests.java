@@ -1,22 +1,21 @@
 package ui;
 
+import helpers.PropertyManager;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pageElements.HeaderNavigation;
+import pages.StudentsPage;
 import pages.WileyStartPage;
 import ui.base.BaseUITest;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import static helpers.Helper.generateString;
-
-public class WileyStartPageSmokeSubMenuTests extends BaseUITest {
+public class WileySmokeTests extends BaseUITest {
 
     private WileyStartPage wileyStartPage;
+    private StudentsPage studentsPage;
 
     @Feature("Wiley")
     @Story("WileyStartPage")
@@ -38,5 +37,16 @@ public class WileyStartPageSmokeSubMenuTests extends BaseUITest {
         wileyStartPage = new WileyStartPage(driver);
 
         Assert.assertEquals(wileyStartPage.getHeaderNavigation().getWhoWeServeSubHeaders(), expectedWhoWeServeSubHeaders);
+    }
+
+    @Feature("Wiley")
+    @Story("WileyStartPage")
+    @Test(description = "Check “Students” item")
+    public void checkStudentsItem() {
+        wileyStartPage = new WileyStartPage(driver);
+
+        studentsPage = wileyStartPage.getHeaderNavigation().goToStudentsPage();
+
+        Assert.assertTrue(studentsPage.checkLearnMoreLinks(PropertyManager.getProperty("wileyplusUrl")));
     }
 }
