@@ -9,11 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 import pages.EducationPage;
 import pages.StudentsPage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static helpers.Helper.getWebElementsText;
 import static helpers.Helper.moveToElement;
+import static helpers.JavascriptExecutorHelper.jsClick;
 import static helpers.Waiters.*;
 
 public class HeaderNavigation {
@@ -22,6 +22,9 @@ public class HeaderNavigation {
 
     @FindBy(css = "div.main-header-navigation")
     private WebElement mainHeaderNavigation;
+
+    @FindBy(css = "div.logo")
+    private WebElement logo;
 
     private By whoWeServeLink = By.xpath("//a[text()='WHO WE SERVE']");
     private By subjectLink = By.xpath("//a[text()='SUBJECTS']");
@@ -99,5 +102,11 @@ public class HeaderNavigation {
         education.click();
 
         return new EducationPage(driver);
+    }
+
+    @Step("Logo click")
+    public void logoClick() {
+        waitUntilElementClickable(driver, logo);
+        jsClick(driver,logo);
     }
 }

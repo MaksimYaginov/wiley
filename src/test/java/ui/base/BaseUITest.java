@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseUITest implements IHookable {
 
     protected WebDriver driver;
-    private String BASE_URL;
+    protected String BASE_URL;
     private final static int IMPLICITY_WAIT = 10;
 
     @BeforeSuite(description = "Set driver settings")
