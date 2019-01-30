@@ -4,10 +4,12 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.EducationPage;
 import pages.StudentsPage;
+import pages.WileyStartPage;
 
 import java.util.List;
 
@@ -20,9 +22,19 @@ public class HeaderNavigation {
 
     private WebDriver driver;
 
+    @CacheLookup
     @FindBy(css = "div.main-header-navigation")
     private WebElement mainHeaderNavigation;
 
+    @CacheLookup
+    @FindBy(id = "js-site-search-input")
+    private WebElement searchField;
+
+    @CacheLookup
+    @FindBy(css = "button.glyphicon-search")
+    private WebElement searchButton;
+
+    @CacheLookup
     @FindBy(css = "div.logo")
     private WebElement logo;
 
@@ -36,6 +48,18 @@ public class HeaderNavigation {
     public HeaderNavigation(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    @Step("Set search text")
+    private void setSearchText(String text) {
+        waitUntilElementClickable(driver, searchField);
+        searchField.sendKeys(text);
+    }
+
+    @Step("Search button click")
+    private void searchButtonClick() {
+        waitUntilElementClickable(driver, searchButton);
+        jsClick(driver, searchButton);
     }
 
     @Step("Who we serve link is displayed")
@@ -105,8 +129,16 @@ public class HeaderNavigation {
     }
 
     @Step("Logo click")
-    public void logoClick() {
+    public WileyStartPage logoClick() {
         waitUntilElementClickable(driver, logo);
-        jsClick(driver,logo);
+        jsClick(driver, logo);
+
+        return new WileyStartPage(driver);
+    }
+
+    @Step("Search")
+    public void search(String text) {
+        setSearchText(text);
+        searchButtonClick();
     }
 }

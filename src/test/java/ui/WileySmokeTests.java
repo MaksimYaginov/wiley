@@ -69,4 +69,13 @@ public class WileySmokeTests extends BaseUITest {
 
         Assert.assertEquals(driver.getCurrentUrl(), BASE_URL);
     }
+
+    @Story("Wiley")
+    @Test(description = "Check not anything search")
+    public void checkNotAnythingSearch() {
+        wileyStartPage = new WileyStartPage(driver);
+        wileyStartPage.getHeaderNavigation().search("");
+
+        Assert.assertEquals(driver.getCurrentUrl(), BASE_URL);
+    }
 }
