@@ -9,12 +9,6 @@ import java.util.List;
 
 public class Helper {
 
-    public static WebElement switchToFrame(WebDriver driver, WebElement frame) {
-        driver.switchTo().frame(frame);
-
-        return frame;
-    }
-
     public static WebElement moveToElement(WebDriver driver, WebElement webElement) {
         Actions actions = new Actions(driver);
         actions.moveToElement(webElement).build().perform();

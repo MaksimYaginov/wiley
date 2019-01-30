@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Waiters {
 
-    private final static int explicitlyWait = 10;
+    private final static int explicitlyWait = Integer.parseInt(PropertyManager.getProperty("explicitlyWait"));
 
     public static void waitUntilAllElementsVisible(WebDriver driver, List<WebElement> webElements) {
         new WebDriverWait(driver, explicitlyWait).until(ExpectedConditions.visibilityOfAllElements(webElements));

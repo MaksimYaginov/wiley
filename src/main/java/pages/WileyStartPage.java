@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageElements.CountryForm;
 import pageElements.HeaderNavigation;
+import pageElements.SearchRelatedContent;
 
 public class WileyStartPage {
 

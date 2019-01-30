@@ -20,7 +20,7 @@ public class BaseUITest implements IHookable {
 
     protected WebDriver driver;
     protected String BASE_URL;
-    private final static int IMPLICITY_WAIT = 10;
+    private final static int IMPLICITY_WAIT = Integer.parseInt(PropertyManager.getProperty("implicityWait"));
 
     @BeforeSuite(description = "Set driver settings")
     public void setBrowserSettings() {
