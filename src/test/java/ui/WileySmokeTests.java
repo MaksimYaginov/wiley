@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.EducationPage;
+import pages.SearchResultPage;
 import pages.StudentsPage;
 import pages.WileyStartPage;
 import ui.base.BaseUITest;
@@ -18,6 +19,7 @@ public class WileySmokeTests extends BaseUITest {
     private WileyStartPage wileyStartPage;
     private StudentsPage studentsPage;
     private EducationPage educationPage;
+    private SearchResultPage searchResultPage;
 
     private final String SEARCH_TEXT = "Java";
 
@@ -35,7 +37,7 @@ public class WileySmokeTests extends BaseUITest {
     @Test(description = "Check items under Who We Serve for sub-header")
     public void checkWhoWeServeSubHeaders() {
         List<String> expectedWhoWeServeSubHeaders = Arrays.asList("Students", "Instructors", "Book Authors", "Professionals",
-                "Researchers", "Institutions", "Librarians", "Corporations", "Societies", "Journal Editors", "Journalists", "Government");
+                "Researchers", "Institutions", "Librarians", "Corporations", "Societies", "Journal Editors", "Government");
         wileyStartPage = new WileyStartPage(driver);
 
         Assert.assertEquals(wileyStartPage.getHeaderNavigation().getWhoWeServeSubHeaders(), expectedWhoWeServeSubHeaders);
@@ -102,16 +104,60 @@ public class WileySmokeTests extends BaseUITest {
     @Story("Wiley")
     @Test(description = "Check search related products content")
     public void checkSearchRelatedProductsContent() {
+        List<String> products;
         SoftAssert softAssert = new SoftAssert();
 
         wileyStartPage = new WileyStartPage(driver);
         wileyStartPage.getHeaderNavigation().setSearchText(SEARCH_TEXT);
-        List<String> products = wileyStartPage.getSearchRelatedContent().getProductsItems();
+        products = wileyStartPage.getSearchRelatedContent().getProductsItems();
 
         softAssert.assertEquals(products.size(), 5);
         for (String product : products) {
             softAssert.assertTrue(product.contains(SEARCH_TEXT));
             softAssert.assertAll();
         }
+    }
+
+    @Story("Wiley")
+    @Test(description = "Check search content titles")
+    public void checkSearchContent() {
+        List<String> productsTitles;
+        SoftAssert softAssert = new SoftAssert();
+
+        wileyStartPage = new WileyStartPage(driver);
+        searchResultPage = wileyStartPage.getHeaderNavigation().search(SEARCH_TEXT);
+        productsTitles = searchResultPage.getFoundProductsTitles();
+
+        softAssert.assertEquals(searchResultPage.getFoundProductsTitles().size(), 10);
+        for (String productsTitle : productsTitles) {
+            softAssert.assertTrue(productsTitle.contains(SEARCH_TEXT));
+            softAssert.assertAll();
+        }
+    }
+
+    @Story("Wiley")
+    @Test(description = "Check search content add cart buttons")
+    public void checkSearchContentAddCartButtons() {
+        wileyStartPage = new WileyStartPage(driver);
+
+        searchResultPage = wileyStartPage.getHeaderNavigation().search(SEARCH_TEXT);
+
+        Assert.assertTrue(searchResultPage.checkAddToCartProductsButtons(), "Not each title has at least one “Add to Cart” button");
+    }
+
+    @Story("Wiley")
+    @Test(description = "Check re-search")
+    public void checkReSearch() {
+        List<String> firstSearchTitles;
+        List<String> secondSearchTitles;
+
+        wileyStartPage = new WileyStartPage(driver);
+        searchResultPage = wileyStartPage.getHeaderNavigation().search(SEARCH_TEXT);
+        firstSearchTitles = searchResultPage.getFoundProductsTitles();
+        wileyStartPage = wileyStartPage.getHeaderNavigation().logoClick();
+        searchResultPage = wileyStartPage.getHeaderNavigation().search(SEARCH_TEXT);
+        secondSearchTitles = searchResultPage.getFoundProductsTitles();
+
+        Assert.assertEquals(firstSearchTitles, secondSearchTitles);
     }
 }

@@ -36,7 +36,7 @@ public class HeaderNavigation {
     private WebElement searchButton;
 
     @CacheLookup
-    @FindBy(css = "div.logo")
+    @FindBy(css = "div.logo img")
     private WebElement logo;
 
     private By whoWeServeLink = By.xpath("//a[text()='WHO WE SERVE']");
