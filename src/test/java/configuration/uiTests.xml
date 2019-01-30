@@ -5,5 +5,5 @@
     <packages>
       <package name="ui"/>
     </packages>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+  </test>
+</suite>

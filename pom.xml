@@ -17,12 +17,15 @@
         <aspectj-version>1.8.10</aspectj-version>
         <selenium-version>3.6.0</selenium-version>
         <testng-version>6.11</testng-version>
-        <sonar-version>3.5.0.1254</sonar-version>
-
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.login>28f8c86ebb3faa1162a9a440f742d489b9ee38fd</sonar.login>
     </properties>
-
+    <profiles>
+        <profile>
+            <id>ui</id>
+            <properties>
+                <suiteFile>uiTests.xml</suiteFile>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>
@@ -31,7 +34,7 @@
                 <version>2.20</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/java/configuration/uiTests.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/java/configuration/${suiteFile}</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj-version}/aspectjweaver-${aspectj-version}.jar"
