@@ -8,6 +8,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.EducationPage;
+import pages.SearchResultPage;
 import pages.StudentsPage;
 import pages.WileyStartPage;
 
@@ -50,16 +51,16 @@ public class HeaderNavigation {
         PageFactory.initElements(driver, this);
     }
 
-    @Step("Set search text")
-    private void setSearchText(String text) {
-        waitUntilElementClickable(driver, searchField);
-        searchField.sendKeys(text);
-    }
-
     @Step("Search button click")
     private void searchButtonClick() {
         waitUntilElementClickable(driver, searchButton);
         jsClick(driver, searchButton);
+    }
+
+    @Step("Set search text")
+    public void setSearchText(String text) {
+        waitUntilElementClickable(driver, searchField);
+        searchField.sendKeys(text);
     }
 
     @Step("Who we serve link is displayed")
@@ -137,8 +138,12 @@ public class HeaderNavigation {
     }
 
     @Step("Search")
-    public void search(String text) {
+    public <T> T search(String text) {
         setSearchText(text);
         searchButtonClick();
+        if (text.equals(""))
+            return (T) this;
+        else
+            return (T) new SearchResultPage(driver);
     }
 }

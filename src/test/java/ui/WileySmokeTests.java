@@ -4,6 +4,7 @@ import helpers.PropertyManager;
 import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.EducationPage;
 import pages.StudentsPage;
 import pages.WileyStartPage;
@@ -17,6 +18,8 @@ public class WileySmokeTests extends BaseUITest {
     private WileyStartPage wileyStartPage;
     private StudentsPage studentsPage;
     private EducationPage educationPage;
+
+    private final String SEARCH_TEXT = "Java";
 
     @Story("Wiley")
     @Test(description = "Check the following links are displayed in the top menu")
@@ -77,5 +80,38 @@ public class WileySmokeTests extends BaseUITest {
         wileyStartPage.getHeaderNavigation().search("");
 
         Assert.assertEquals(driver.getCurrentUrl(), BASE_URL);
+    }
+
+    @Story("Wiley")
+    @Test(description = "Check search related suggestions content")
+    public void checkSearchRelatedSuggestionsContent() {
+        SoftAssert softAssert = new SoftAssert();
+
+        wileyStartPage = new WileyStartPage(driver);
+        wileyStartPage.getHeaderNavigation().setSearchText(SEARCH_TEXT);
+        List<String> suggestions = wileyStartPage.getSearchRelatedContent().getSuggestionsItems();
+
+        softAssert.assertEquals(suggestions.size(), 4);
+        for (String suggestion : suggestions) {
+            softAssert.assertTrue(suggestion.startsWith(SEARCH_TEXT));
+            softAssert.assertAll();
+        }
+
+    }
+
+    @Story("Wiley")
+    @Test(description = "Check search related products content")
+    public void checkSearchRelatedProductsContent() {
+        SoftAssert softAssert = new SoftAssert();
+
+        wileyStartPage = new WileyStartPage(driver);
+        wileyStartPage.getHeaderNavigation().setSearchText(SEARCH_TEXT);
+        List<String> products = wileyStartPage.getSearchRelatedContent().getProductsItems();
+
+        softAssert.assertEquals(products.size(), 5);
+        for (String product : products) {
+            softAssert.assertTrue(product.contains(SEARCH_TEXT));
+            softAssert.assertAll();
+        }
     }
 }

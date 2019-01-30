@@ -1,36 +1,29 @@
 package pages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pageElements.CountryForm;
 import pageElements.HeaderNavigation;
 
-public class WileyStartPage {
+public class SearchResultPage {
 
     private WebDriver driver;
-    private CountryForm countryForm;
     private HeaderNavigation headerNavigation;
-    private SearchRelatedContent searchRelatedContent;
+    private CountryForm countryForm;
 
-    public WileyStartPage(WebDriver driver) {
+    @FindBy(css = "div.search-result-tabs-wrapper")
+    private WebElement headerBanner;
+
+    public SearchResultPage(WebDriver driver) {
         headerNavigation = new HeaderNavigation(driver);
         countryForm = new CountryForm(driver);
-        searchRelatedContent = new SearchRelatedContent(driver);
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
+
         if (countryForm.countryFormIsDisplayed())
             countryForm.closeCountryForm();
-    }
-
-    @Step("Get header navigation")
-    public HeaderNavigation getHeaderNavigation() {
-        return headerNavigation;
-    }
-
-    @Step("Get search related content")
-    public SearchRelatedContent getSearchRelatedContent() {
-        return searchRelatedContent;
     }
 }

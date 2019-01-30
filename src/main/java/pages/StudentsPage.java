@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pageElements.CountryForm;
 import pageElements.HeaderNavigation;
+import pageElements.URI;
 
 import java.util.List;
 
