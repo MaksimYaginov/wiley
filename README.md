@@ -7,7 +7,7 @@
 #### Для генерации отчета выполнить команду: allure serve target/allure-results
 
 ## Main
-![Screenshot](src/main/resources/job.jpg)
+![Screenshot](src/main/resources/main.jpg)
 
 ## Screenshot
 ![Screenshot](src/main/resources/Screenshot.jpg)
