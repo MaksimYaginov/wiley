@@ -51,19 +51,14 @@ public class StudentsPage {
 
     @Step("Check learn more links")
     public boolean checkLearnMoreLinks(String expectedUrl) {
-        boolean result = false;
-        List<WebElement> learnMores;
-
-        learnMores = pageContent.findElements(learnMoreLink);
+        List<WebElement> learnMores = pageContent.findElements(learnMoreLink);
         waitUntilAllElementsVisible(driver, learnMores);
 
         for (WebElement learnMore : learnMores) {
-            result = learnMore.getAttribute("href").contains(expectedUrl);
-
-            if (!result)
+            if (!learnMore.getAttribute("href").contains(expectedUrl))
                 return false;
         }
 
-        return result;
+        return true;
     }
 }

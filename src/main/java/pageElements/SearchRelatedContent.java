@@ -35,7 +35,7 @@ public class SearchRelatedContent {
         suggestionItems = searchRelatedContent.findElements(suggestions);
         waitUntilAllElementsVisible(driver, suggestionItems);
 
-        return getWebElementsText(driver, suggestionItems);
+        return getWebElementsText(suggestionItems);
     }
 
     @Step("Get products items")
@@ -45,6 +45,6 @@ public class SearchRelatedContent {
         productsItems = searchRelatedContent.findElements(products);
         waitUntilAllElementsVisible(driver, productsItems);
 
-        return getWebElementsText(driver, productsItems);
+        return getWebElementsText(productsItems);
     }
 }

@@ -1,6 +1,5 @@
 package helpers;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,17 +21,5 @@ public class Waiters {
 
     public static void waitUntilElementClickable(WebDriver driver, WebElement webElement) {
         new WebDriverWait(driver, explicitlyWait).until(ExpectedConditions.elementToBeClickable(webElement));
-    }
-
-    public static void waitUntilElementLocatedByInvisible(WebDriver driver, By webElementLocator) {
-        new WebDriverWait(driver, explicitlyWait).until(ExpectedConditions.invisibilityOfElementLocated(webElementLocator));
-    }
-
-    public static void waitUntilElementLocatedByVisible(WebDriver driver, By webElementLocator) {
-        new WebDriverWait(driver, explicitlyWait).until(ExpectedConditions.visibilityOfElementLocated(webElementLocator));
-    }
-
-    public static void waitUntilElementLocatedByClickable(WebDriver driver, By webElementLocator) {
-        new WebDriverWait(driver, explicitlyWait).until(ExpectedConditions.elementToBeClickable(webElementLocator));
     }
 }

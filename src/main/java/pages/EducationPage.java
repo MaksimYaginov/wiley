@@ -50,6 +50,6 @@ public class EducationPage {
         List<WebElement> leftSideItems = pageContent.findElements(leftSideLinks);
         waitUntilAllElementsVisible(driver, leftSideItems);
 
-        return getWebElementsText(driver, leftSideItems);
+        return getWebElementsText(leftSideItems);
     }
 }

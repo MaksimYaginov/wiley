@@ -16,7 +16,7 @@ public class Helper {
         return webElement;
     }
 
-    public static List<String> getWebElementsText(WebDriver driver, List<WebElement> webElements) {
+    public static List<String> getWebElementsText(List<WebElement> webElements) {
         List<String> outputList = new ArrayList<>();
 
         for (WebElement webElement : webElements)

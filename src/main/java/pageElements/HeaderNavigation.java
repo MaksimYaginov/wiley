@@ -102,7 +102,7 @@ public class HeaderNavigation {
         subHeaders = mainHeaderNavigation.findElement(whoWeServeLink).findElements(whoWeServeSubHeaders);
         waitUntilAllElementsVisible(driver, subHeaders);
 
-        return getWebElementsText(driver, subHeaders);
+        return getWebElementsText(subHeaders);
     }
 
     @Step("Go to students page")

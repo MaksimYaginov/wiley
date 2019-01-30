@@ -38,11 +38,6 @@ public class SearchResultPage {
             countryForm.closeCountryForm();
     }
 
-    @Step("Get header navigation")
-    public HeaderNavigation getHeaderNavigation() {
-        return headerNavigation;
-    }
-
     @Step("Get found products titles")
     public List<String> getFoundProductsTitles() {
         List<WebElement> foundProductsTitles = new ArrayList<>();
@@ -52,17 +47,15 @@ public class SearchResultPage {
 
         waitUntilAllElementsVisible(driver, foundProductsTitles);
 
-        return getWebElementsText(driver, foundProductsTitles);
+        return getWebElementsText(foundProductsTitles);
     }
 
     @Step("Check add to cart products buttons")
     public boolean checkAddToCartProductsButtons() {
-        boolean result = false;
         for (WebElement productItem : productItems) {
-            result = productItem.findElements(addToCartButton).size() >= 1;
-            if (!result)
+            if (!(productItem.findElements(addToCartButton).size() >= 1))
                 return false;
         }
-        return result;
+        return true;
     }
 }
