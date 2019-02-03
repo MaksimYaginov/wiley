@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pageElements.CountryForm;
-import pageElements.HeaderNavigation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +13,7 @@ import java.util.List;
 import static helpers.Helper.getWebElementsText;
 import static helpers.Waiters.waitUntilAllElementsVisible;
 
-public class SearchResultPage {
-
-    private WebDriver driver;
-    private HeaderNavigation headerNavigation;
-    private CountryForm countryForm;
-
+public class SearchResultPage extends BasePage{
     @FindBy(css = "section.product-item")
     private List<WebElement> productItems;
 
@@ -28,14 +21,9 @@ public class SearchResultPage {
     private By addToCartButton = By.cssSelector("button.add-to-cart-button");
 
     public SearchResultPage(WebDriver driver) {
-        headerNavigation = new HeaderNavigation(driver);
-        countryForm = new CountryForm(driver);
-
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
-
-        if (countryForm.countryFormIsDisplayed())
-            countryForm.closeCountryForm();
     }
 
     @Step("Get found products titles")

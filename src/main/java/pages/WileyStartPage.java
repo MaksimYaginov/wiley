@@ -3,26 +3,15 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pageElements.CountryForm;
 import pageElements.HeaderNavigation;
 import pageElements.SearchRelatedContent;
 
-public class WileyStartPage {
-
-    private WebDriver driver;
-    private CountryForm countryForm;
-    private HeaderNavigation headerNavigation;
-    private SearchRelatedContent searchRelatedContent;
+public class WileyStartPage extends BasePage{
 
     public WileyStartPage(WebDriver driver) {
-        headerNavigation = new HeaderNavigation(driver);
-        countryForm = new CountryForm(driver);
-        searchRelatedContent = new SearchRelatedContent(driver);
-
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        if (countryForm.countryFormIsDisplayed())
-            countryForm.closeCountryForm();
     }
 
     @Step("Get header navigation")

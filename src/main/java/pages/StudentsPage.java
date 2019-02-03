@@ -7,19 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pageElements.CountryForm;
-import pageElements.HeaderNavigation;
 import pageElements.URI;
 
 import java.util.List;
 
 import static helpers.Waiters.waitUntilAllElementsVisible;
 
-public class StudentsPage {
-
-    private WebDriver driver;
-    private HeaderNavigation headerNavigation;
-    private CountryForm countryForm;
+public class StudentsPage extends BasePage{
 
     @FindBy(css = "div.hero-banner")
     private WebElement headerBanner;
@@ -31,14 +25,9 @@ public class StudentsPage {
     private By headerSlogan = By.cssSelector("p.sg-title-h1");
 
     public StudentsPage(WebDriver driver) {
-        headerNavigation = new HeaderNavigation(driver);
-        countryForm = new CountryForm(driver);
-
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
-
-        if (countryForm.countryFormIsDisplayed())
-            countryForm.closeCountryForm();
 
         if (!driver.getCurrentUrl().equals(PropertyManager.getProperty("baseUrl") + URI.en_us + "/" + URI.students)) {
             throw new IllegalStateException("Students page is not present");
