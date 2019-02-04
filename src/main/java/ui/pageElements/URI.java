@@ -1,4 +1,4 @@
-package pageElements;
+package ui.pageElements;
 
 public interface URI {
     String en_us = "en-us";

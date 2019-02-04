@@ -1,6 +1,6 @@
-package pages;
+package ui.pages;
 
-import helpers.PropertyManager;
+import ui.helpers.PropertyManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-import static helpers.Helper.getWebElementsText;
-import static helpers.Waiters.waitUntilAllElementsVisible;
+import static ui.helpers.Helper.getWebElementsText;
+import static ui.helpers.Waiters.waitUntilAllElementsVisible;
 
 public class EducationPage extends BasePage{
 

@@ -1,6 +1,6 @@
 package ui.base;
 
-import helpers.PropertyManager;
+import ui.helpers.PropertyManager;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,7 +12,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import pageElements.URI;
+import ui.pageElements.URI;
 
 import java.util.concurrent.TimeUnit;
 

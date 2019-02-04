@@ -1,10 +1,10 @@
-package pages;
+package ui.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pageElements.HeaderNavigation;
-import pageElements.SearchRelatedContent;
+import ui.pageElements.HeaderNavigation;
+import ui.pageElements.SearchRelatedContent;
 
 public class WileyStartPage extends BasePage{
 

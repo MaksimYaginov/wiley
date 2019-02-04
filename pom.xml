@@ -17,12 +17,19 @@
         <aspectj-version>1.8.10</aspectj-version>
         <selenium-version>3.6.0</selenium-version>
         <testng-version>6.11</testng-version>
+        <rest-assured-version>3.1.0</rest-assured-version>
     </properties>
     <profiles>
         <profile>
             <id>ui</id>
             <properties>
                 <suiteFile>uiTests.xml</suiteFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>api</id>
+            <properties>
+                <suiteFile>apiTests.xml</suiteFile>
             </properties>
         </profile>
     </profiles>
@@ -84,6 +91,11 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-attachments</artifactId>
             <version>${allure-attachments-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured-version}</version>
         </dependency>
     </dependencies>
 </project>

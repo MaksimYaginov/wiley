@@ -1,9 +1,9 @@
-package pages;
+package ui.pages;
 
 import org.openqa.selenium.WebDriver;
-import pageElements.CountryForm;
-import pageElements.HeaderNavigation;
-import pageElements.SearchRelatedContent;
+import ui.pageElements.CountryForm;
+import ui.pageElements.HeaderNavigation;
+import ui.pageElements.SearchRelatedContent;
 
 public class BasePage {
 

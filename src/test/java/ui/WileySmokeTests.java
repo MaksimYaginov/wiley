@@ -1,14 +1,14 @@
 package ui;
 
-import helpers.PropertyManager;
+import ui.helpers.PropertyManager;
 import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.EducationPage;
-import pages.SearchResultPage;
-import pages.StudentsPage;
-import pages.WileyStartPage;
+import ui.pages.EducationPage;
+import ui.pages.SearchResultPage;
+import ui.pages.StudentsPage;
+import ui.pages.WileyStartPage;
 import ui.base.BaseUITest;
 
 import java.util.Arrays;

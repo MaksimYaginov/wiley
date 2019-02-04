@@ -1,4 +1,4 @@
-package pageElements;
+package ui.pageElements;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -7,17 +7,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.EducationPage;
-import pages.SearchResultPage;
-import pages.StudentsPage;
-import pages.WileyStartPage;
+import ui.pages.EducationPage;
+import ui.pages.SearchResultPage;
+import ui.pages.StudentsPage;
+import ui.pages.WileyStartPage;
 
 import java.util.List;
 
-import static helpers.Helper.getWebElementsText;
-import static helpers.Helper.moveToElement;
-import static helpers.JavascriptExecutorHelper.jsClick;
-import static helpers.Waiters.*;
+import static ui.helpers.Helper.getWebElementsText;
+import static ui.helpers.Helper.moveToElement;
+import static ui.helpers.JavascriptExecutorHelper.jsClick;
+import static ui.helpers.Waiters.*;
 
 public class HeaderNavigation {
 

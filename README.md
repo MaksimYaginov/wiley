@@ -6,6 +6,11 @@
 #### Выполнить команду: mvn clean test -P ui
 #### Для генерации отчета выполнить команду: allure serve target/allure-results
 
+## Запуск API автотестов
+(Должны быть установлен и настроен maven)
+#### Перейти в каталок с тестами 
+#### Выполнить команду: mvn clean test -P api
+
 ## Main
 ![Screenshot](src/main/resources/main.jpg)
 
